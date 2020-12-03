@@ -16,7 +16,7 @@ import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selector';
 import './App.css';
 
-class App extends React.Component{
+class App extends React.Component {
 	unsubscribeFromAuth = null;
 
 	componentDidMount() {
@@ -29,9 +29,9 @@ class App extends React.Component{
 
 				userRef.onSnapshot(snapShot => {
 					setCurrentUser({
-							id: snapShot.id,
-							...snapShot.data()
-						});
+						id: snapShot.id,
+						...snapShot.data()
+					});
 				})
 			} else {
 				setCurrentUser(userAuth);
@@ -50,12 +50,12 @@ class App extends React.Component{
 				<Header />
 				<Switch>
 					<Route exact path='/' component={HomePage} />
-					<Route exact path='/shop' component={ShopPage} />
+					<Route path='/shop' component={ShopPage} />
 					<Route exact path='/checkout' component={CheckoutPage} />
 					<Route exact path='/signin'
 						render={() => this.props.currentUser
-									? (<Redirect to='/' />)
-									: (<SignInAndSignUpPage />)}
+							? (<Redirect to='/' />)
+							: (<SignInAndSignUpPage />)}
 					/>
 				</Switch>
 			</div>
